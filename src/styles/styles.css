@@ -1,0 +1,105 @@
+/* General App Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .App {
+    text-align: center;
+  }
+  
+  .App-header {
+    background-color: #003366; /* Navy blue */
+    padding: 20px;
+    color: white;
+  }
+  
+  .media-list {
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
+  }
+  
+  .media-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background: #f9f9f9;
+  }
+  
+  .media-item h2 {
+    margin: 0;
+    font-size: 1.5em;
+  }
+  
+  .media-item p {
+    margin: 5px 0 0;
+    color: #555;
+  }
+  
+  /* Navbar Styles */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #003366; /* Navy blue */
+    color: white;
+  }
+  
+  .nav-left {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .nav-search {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .nav-search input {
+    width: 300px;
+    padding: 8px;
+    font-size: 16px;
+  }
+  
+  .nav-search button {
+    padding: 8px 12px;
+    background-color: #006400; /* Dark green */
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .nav-search button:hover {
+    background-color: #004d00; /* Darker green on hover */
+  }
+  
+  .nav-right {
+    margin-left: auto;
+  }
+  
+  .navbar h1 {
+    color: white;
+    cursor: pointer;
+  }
+  
+  /* Button Styles */
+  button {
+    padding: 10px 20px;
+    background-color: #006400; /* Dark green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #004d00; /* Darker green on hover */
+  }
+  
