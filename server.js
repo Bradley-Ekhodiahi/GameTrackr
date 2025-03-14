@@ -3,7 +3,7 @@ import axios from 'axios';
 import cors from 'cors';
 
 const app = express();
-const PORT = process.env.PORT || 5000; // Use Render's port or default to 5000
+const PORT = 5000;
 
 const clientId = '840q6o6x0grpvbnr8qjt3c4bwxq3pw';
 const clientSecret = '8x0429toc2k5rxontjdmxziqkqivaf';
@@ -11,7 +11,7 @@ let accessToken = '';
 
 // Enable CORS for frontend requests
 app.use(cors());
-app.use(express.json());
+
 // Fetch a fresh access token
 const getAccessToken = async () => {
   try {
@@ -36,10 +36,6 @@ const ensureAccessToken = async (req, res, next) => {
   }
   next();
 };
-
-app.get("/", (req, res) => {
-  res.send("Backend is running!");
-});
 
 // Fetch game list (randomized)
 app.get('/api/games', ensureAccessToken, async (req, res) => {
@@ -113,5 +109,5 @@ app.get("/api/search", async (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
