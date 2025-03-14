@@ -109,5 +109,5 @@ app.get("/api/search", async (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on ${API_URL}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });

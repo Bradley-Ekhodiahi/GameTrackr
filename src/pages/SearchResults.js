@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 
-const API_URL = import.meta.env.VITE_API_URL; // Use environment variable
+// Get the API URL dynamically from the environment variable
+const API_URL = process.env.REACT_APP_API_URL;
 
 const SearchResults = () => {
-  const [searchParams] = useSearchParams();
-  const query = searchParams.get("q");
+  const [searchParams] = useSearchParams(); // Get query params from URL
+  const query = searchParams.get("q"); // Extract "q" from "?q=halo"
   const [games, setGames] = useState([]);
 
   useEffect(() => {
     const fetchSearchResults = async () => {
       if (!query) return; // Don't fetch if there's no query
       try {
-        const response = await fetch(`${API_URL}/api/search?query=${query}`);
+        const response = await fetch(`${API_URL}/search?query=${query}`);  // Use dynamic API URL
         const data = await response.json();
         setGames(data);
       } catch (error) {
