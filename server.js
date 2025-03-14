@@ -3,7 +3,7 @@ import axios from 'axios';
 import cors from 'cors';
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 
 const clientId = '840q6o6x0grpvbnr8qjt3c4bwxq3pw';
 const clientSecret = '8x0429toc2k5rxontjdmxziqkqivaf';
@@ -109,5 +109,5 @@ app.get("/api/search", async (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
