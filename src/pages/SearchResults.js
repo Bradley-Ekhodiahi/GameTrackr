@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 
+const API_URL = import.meta.env.VITE_API_URL; // Use environment variable
+
 const SearchResults = () => {
-  const [searchParams] = useSearchParams(); // Get query params from URL
-  const query = searchParams.get("q"); // Extract "q" from "?q=halo"
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get("q");
   const [games, setGames] = useState([]);
 
   useEffect(() => {
     const fetchSearchResults = async () => {
       if (!query) return; // Don't fetch if there's no query
       try {
-        const response = await fetch(`http://localhost:5000/api/search?query=${query}`);
+        const response = await fetch(`${API_URL}/api/search?query=${query}`);
         const data = await response.json();
         setGames(data);
       } catch (error) {

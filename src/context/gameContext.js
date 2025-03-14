@@ -3,13 +3,15 @@ import axios from "axios";
 
 export const GameContext = createContext();
 
+const API_URL = import.meta.env.VITE_API_URL; // Use environment variable
+
 export const GameProvider = ({ children }) => {
-  const [games, setGames] = useState(null); // `null` ensures no premature rendering
+  const [games, setGames] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const getGames = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/games");
+      const response = await axios.get(`${API_URL}/api/games`);
       return response.data;
     } catch (error) {
       console.error("Error fetching games:", error);
@@ -19,10 +21,10 @@ export const GameProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchInitialGames = async () => {
-      if (!games) {  // Only fetch games if they haven’t been fetched yet
+      if (!games) {
         const gamesData = await getGames();
         setGames(gamesData);
-        setLoading(false); // Mark loading as complete **only after** setting games
+        setLoading(false);
       }
     };
     fetchInitialGames();
