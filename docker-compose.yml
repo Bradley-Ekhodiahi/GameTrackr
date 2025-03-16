@@ -3,14 +3,14 @@ services:
   backend:
     build:
       context: .
-      dockerfile: Dockerfile-backend
+      dockerfile: Dockerfile-backend 
     ports:
-      - "5000:5000"
+      - "5000:5000" # map port 5000 in the container to port 5000 in my machine
   frontend:
     build:
       context: .  # Change this to the root directory
-      dockerfile: src/Dockerfile-frontend  # Pointing to the Dockerfile inside src/
+      dockerfile: src/Dockerfile-frontend  # specify that front end Dockerfile is inside src/
     ports:
-      - "3000:3000"
+      - "3000:3000" # map port 3000 in the container to port 3000 in my machine
     depends_on:
       - backend

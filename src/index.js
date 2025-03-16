@@ -1,10 +1,10 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import './styles/styles.css'; // if the file is in a subfolder
-import App from './App.js';
+import React from "react"; // imports React
+import ReactDOM from "react-dom/client"; // lets React render components into the dom 
+import "./index.css"; // import global css styles
+import './styles/styles.css'; // import more styles
+import App from './App.js'; // import app.js which is the root of the app
 
-// Create the root element and render the App component.
+// create the root element and render the App component.
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(

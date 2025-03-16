@@ -1,7 +1,8 @@
-import { db } from "../firebase";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import { db } from "../firebase"; // imports the database
+import { doc, setDoc, getDoc } from "firebase/firestore"; // reference a firestore document, add and retrieve data from database.
 
-export const addGameToBacklog = async (userId, gameId, status) => {
+// take the userID, gameId and the category it's being placed in and store the info in the database.
+export const addGameToBacklog = async (userId, gameId, status) => { 
   try {
     const gameRef = doc(db, "users", userId, "backlog", gameId);
     await setDoc(gameRef, { status }, { merge: true });
@@ -10,6 +11,7 @@ export const addGameToBacklog = async (userId, gameId, status) => {
   }
 };
 
+// used to show user their backlog if it exists otherwise it's an error and they are not shown a backlog
 export const getUserBacklog = async (userId) => {
   try {
     const userRef = doc(db, "users", userId);

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getGameDetails } from "../utils/api.js";
-import { db, auth } from "../firebase.js"; // Import Firestore & Auth
+import { getGameDetails } from "../utils/api.js"; // get a game's details with it's id
+import { db, auth } from "../firebase.js"; // import Firestore database & firebase authentication
 import { doc, setDoc, getDoc } from "firebase/firestore";
 
 const GamePage = () => {
-  const { id } = useParams();
-  const [game, setGame] = useState(null);
-  const [backlogStatus, setBacklogStatus] = useState(null); // Track user's selection
+  const { id } = useParams(); // take the game id
+  const [game, setGame] = useState(null); // keep the data 
+  const [backlogStatus, setBacklogStatus] = useState(null); // track and set the category chosen
   const user = auth.currentUser; // Get logged-in user
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const GamePage = () => {
         setGame(gameData);
 
         if (user) {
-          // Fetch the backlog status from Firestore
+          // fetches the backlog status from Firestore if you're logged in
           const gameRef = doc(db, "users", user.uid, "backlog", id);
           const docSnap = await getDoc(gameRef);
           if (docSnap.exists()) {
@@ -31,16 +31,16 @@ const GamePage = () => {
 
     fetchGameDetails();
   }, [id, user]);
-
+  // show this message when games are loading
   if (!game) return <p>Loading game details...</p>;
-
+  // get the games release date
   const releaseDate = game.release_dates?.length
     ? new Date(
         Math.min(...game.release_dates.map((d) => d.date * 1000))
       ).toLocaleDateString()
     : "N/A";
 
-  // Function to update the backlog status in Firestore
+  //  updates the backlog status in Firestore database only when logged in otherwise error
   const updateBacklog = async (status) => {
     if (!user) {
       alert("You need to log in to save to your backlog.");
@@ -49,17 +49,17 @@ const GamePage = () => {
   
     try {
       const gameRef = doc(db, "users", user.uid, "backlog", id);
-      // Store the game name, status, and image_id (or the full image URL if available)
+      // stores the game's name, status, and cover
       await setDoc(
         gameRef,
         {
           status,
           gameName: game.name,
-          cover: game.cover, // Save the cover image data
+          cover: game.cover, 
         },
         { merge: true }
       );
-      setBacklogStatus(status); // Update UI
+      setBacklogStatus(status); // update the backlog in the front end
     } catch (error) {
       console.error("Error updating backlog:", error);
     }
@@ -78,7 +78,7 @@ const GamePage = () => {
       <p>Rating: {game.rating || "N/A"}</p>
       <p>Release Date: {releaseDate}</p>
 
-      {/* Backlog Buttons */}
+      {/* Backlog Category Buttons */}
       <div>
         <p>Backlog Status: {backlogStatus || "Not added"}</p>
         <button onClick={() => updateBacklog("Playing")}>Playing</button>

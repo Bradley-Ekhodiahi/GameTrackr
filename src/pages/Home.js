@@ -3,10 +3,10 @@ import { GameContext } from "../context/gameContext.js";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const { games, loading } = useContext(GameContext);
+  const { games, loading } = useContext(GameContext); // check if the games are still loading if they are then don't render
 
-  if (loading || games === null) return null; // Ensure no flicker by NOT rendering early
-
+  if (loading || games === null) return null; // used so there's no flickering game display on the home page
+  // display the list of 10 game names and covers on the home page with a horizontal scroll bar
   return (
     <div>
       <h2>Game List</h2>

@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 
+// search results page
 const SearchResults = () => {
-  const [searchParams] = useSearchParams(); // Get query params from URL
-  const query = searchParams.get("q"); // Extract "q" from "?q=halo"
-  const [games, setGames] = useState([]);
+  const [searchParams] = useSearchParams(); // gets the query paramaters from the URL
+  const query = searchParams.get("q"); // extracts the search term from "?q=( whatever game here )"
+  const [games, setGames] = useState([]); // update the state of games
 
   useEffect(() => {
     const fetchSearchResults = async () => {
-      if (!query) return; // Don't fetch if there's no query
+      if (!query) return; // if there's no query return nothing, but otherwise fetch the data and update the games state
       try {
         const response = await fetch(`http://localhost:5000/api/search?query=${query}`);
         const data = await response.json();
@@ -19,8 +20,8 @@ const SearchResults = () => {
     };
 
     fetchSearchResults();
-  }, [query]); // Run this effect when query changes
-
+  }, [query]); // new query happens then do the function again
+  // the search results for queries are displayed with the cover art, title and rating, otherwise return no games if query doesn't match anything
   return (
     <div>
       <h2>Search Results for "{query}"</h2>

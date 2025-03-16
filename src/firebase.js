@@ -1,8 +1,8 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { initializeApp } from "firebase/app"; // start firebase with my chosen settings
+import { getAuth } from "firebase/auth"; // enable firebase google authentication
+import { getFirestore } from "firebase/firestore"; // enable fire store database for storage
 
-// Your web app's Firebase configuration
+// my Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyBJeHpzlQ1b3F-0T0SnvhgH9V1ozkdLlHE",
     authDomain: "gametrackr-afa6f.firebaseapp.com",
@@ -12,7 +12,7 @@ const firebaseConfig = {
     appId: "1:143115964089:web:31f40d81d39f84dda25568"
   };
 
-  const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);  // Authentication
-export const db = getFirestore(app); // Firestore Database
+  const app = initializeApp(firebaseConfig);// initialise with my config
+export const auth = getAuth(app);  // firebase google authentication
+export const db = getFirestore(app); // firestore database
 export default app;
